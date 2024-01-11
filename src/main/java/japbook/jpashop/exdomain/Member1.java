@@ -1,11 +1,14 @@
-package japbook.jpashop.domain;
+package japbook.jpashop.exdomain;
+
+import japbook.jpashop.domain.Locker;
+import japbook.jpashop.domain.Order;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Member
+public class Member1
 {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO) //생략하면 오토임
@@ -15,6 +18,10 @@ public class Member
     private String city;
     private String street;
     private String zipcode;
+
+    @OneToMany(mappedBy = "member")
+    @JoinTable(name = "MEMBER_PRODUCT")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name="LOCKER_ID")
@@ -61,5 +68,29 @@ public class Member
 
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
+    }
+
+    public List<MemberProduct> getMemberProducts() {
+        return memberProducts;
+    }
+
+    public void setMemberProducts(List<MemberProduct> products) {
+        this.memberProducts = products;
+    }
+
+    public Locker getLocker() {
+        return locker;
+    }
+
+    public void setLocker(Locker locker) {
+        this.locker = locker;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

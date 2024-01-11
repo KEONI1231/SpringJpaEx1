@@ -13,7 +13,7 @@ public class TeamEx {
     private String teamname;
 
     @OneToMany(mappedBy = "teamEx") // mappedby : 일대다 매핑에서 뭐랑 걸려있냐.
-    private List<MemberEx> memberExes = new ArrayList<>(); //양뱡향
+    private List<MemberEx> memberExes = new ArrayList<>(); //양뱡향, 읽기 전용
 
     public Long getId() {
         return id;
