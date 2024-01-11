@@ -20,11 +20,11 @@ public class Member1
     private String zipcode;
 
     @OneToMany(mappedBy = "member")
-    @JoinTable(name = "MEMBER_PRODUCT")
+    //@JoinTable(name = "MEMBER_PRODUCT")
     private List<MemberProduct> memberProducts = new ArrayList<>();
 
     @OneToOne
-    @JoinColumn(name="LOCKER_ID")
+    //@JoinColumn(name="LOCKER_ID")
     private Locker locker;
 
     @OneToMany (mappedBy = "member")
