@@ -1,6 +1,9 @@
 package japbook.jpashop;
 
 import japbook.jpashop.highmapping.Movie;
+import japbook.jpashop.highmapping.cascade.Child;
+import japbook.jpashop.highmapping.cascade.Parent;
+import japbook.jpashop.highmapping.ex4.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,19 +18,22 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            Movie movie = new Movie();
-            movie.setDirector("a");
-            movie.setActor("bbb");
-            movie.setName("바람과 함께 사라지다.");
-            movie.setPrice(1000);
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
 
-            em.persist(movie);
+            em.persist(parent);
+
             em.flush();
             em.clear();
 
-            Movie findMovie = em.find(Movie.class, movie.getId());
-            System.out.println("findMovie = " + findMovie);
+            Parent findParent = em.find(Parent.class, parent.getId());
+            findParent.getChildList().remove(0);
+
+
 
 
 

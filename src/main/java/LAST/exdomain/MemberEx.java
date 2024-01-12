@@ -16,7 +16,9 @@ public class MemberEx {
     //@Column(name = "TEAM_ID")
     //private Long teamId;
 
-    @ManyToOne //member 입장에서 다., 즉 여러맴버는 하나의 팀에 가입.
+    @ManyToOne(fetch = FetchType.LAZY) //member 입장에서 다., 즉 여러맴버는 하나의 팀에 가입.,
+    //맴버 클래스만 우선 디비에서 조회.
+    //FetchType.EAGER //즉시 로딩
     @JoinColumn(name="TEAM_ID")
     private TeamEx teamEx;
 
