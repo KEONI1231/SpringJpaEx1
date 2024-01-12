@@ -1,11 +1,11 @@
-package japbook.jpashop.ex3;
+package LAST.ex3;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-@Entity
+//@Entity
 public class Delivery3 {
 
     @Id @GeneratedValue
@@ -17,7 +17,7 @@ public class Delivery3 {
 
     private DeliveryStatus status;
 
-    @OneToOne(mappedBy = "ORDER_ID")
+    @OneToOne(mappedBy = "delivery")
     private Order3 order;
 
 }

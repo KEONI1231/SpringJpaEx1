@@ -1,4 +1,4 @@
-package japbook.jpashop.ex3;
+package LAST.ex3;
 
 public enum DeliveryStatus {
 

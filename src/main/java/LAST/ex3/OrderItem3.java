@@ -1,8 +1,8 @@
-package japbook.jpashop.ex3;
+package LAST.ex3;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 public class OrderItem3 {
     @Id @GeneratedValue
     @Column(name = "ORDER_ITEM_ID")

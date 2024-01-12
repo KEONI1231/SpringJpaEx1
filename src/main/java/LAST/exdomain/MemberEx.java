@@ -1,8 +1,8 @@
-package japbook.jpashop.exdomain;
+package LAST.exdomain;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 public class MemberEx {
 
     @Id

@@ -1,13 +1,13 @@
-package japbook.jpashop.exdomain;
+package LAST.exdomain;
 
-import japbook.jpashop.domain.Locker;
-import japbook.jpashop.domain.Order;
+import LAST.domain.Locker;
+import LAST.domain.Order;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//@Entity
 public class Member1
 {
 

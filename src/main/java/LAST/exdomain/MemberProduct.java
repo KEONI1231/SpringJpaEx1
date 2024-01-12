@@ -1,10 +1,8 @@
-package japbook.jpashop.exdomain;
-
-import japbook.jpashop.domain.Member;
+package LAST.exdomain;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 public class MemberProduct {
     @Id @GeneratedValue
     private Long id;

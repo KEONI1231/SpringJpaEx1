@@ -1,11 +1,9 @@
-package japbook.jpashop.domain;
+package LAST.domain;
 
-
-import jdk.jfr.Unsigned;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 public class OrderItem {
 
     @Id @GeneratedValue

@@ -1,10 +1,10 @@
-package japbook.jpashop.ex3;
+package LAST.ex3;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//@Entity
 public class Category3 {
 
     @Id @GeneratedValue

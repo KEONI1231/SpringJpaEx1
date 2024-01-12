@@ -1,9 +1,6 @@
 package japbook.jpashop;
 
-import japbook.jpashop.domain.Order;
-import japbook.jpashop.domain.OrderItem;
-import japbook.jpashop.exdomain.MemberEx;
-import japbook.jpashop.exdomain.TeamEx;
+import japbook.jpashop.highmapping.Movie;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,8 +16,20 @@ public class JpaMain {
 
         try {
 
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
+            Movie movie = new Movie();
+            movie.setDirector("a");
+            movie.setActor("bbb");
+            movie.setName("바람과 함께 사라지다.");
+            movie.setPrice(1000);
+
+            em.persist(movie);
+            em.flush();
+            em.clear();
+
+            Movie findMovie = em.find(Movie.class, movie.getId());
+            System.out.println("findMovie = " + findMovie);
+
+
 
             //저장
             /* TeamEx team = new TeamEx();

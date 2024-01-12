@@ -1,11 +1,11 @@
-package japbook.jpashop.exdomain;
+package LAST.exdomain;
 
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+//@Entity
 public class TeamEx {
     @Id @GeneratedValue
     @Column(name = "TEAM_ID")
