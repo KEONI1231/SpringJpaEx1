@@ -3,7 +3,10 @@ package japbook.jpashop;
 import japbook.jpashop.highmapping.Movie;
 import japbook.jpashop.highmapping.cascade.Child;
 import japbook.jpashop.highmapping.cascade.Parent;
+import japbook.jpashop.highmapping.ex4.Address;
 import japbook.jpashop.highmapping.ex4.Book;
+import japbook.jpashop.highmapping.ex4.Member4;
+import japbook.jpashop.highmapping.ex4.Period;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,22 +21,13 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Child child1 = new Child();
-            Child child2 = new Child();
 
-            Parent parent = new Parent();
-            parent.addChild(child1);
-            parent.addChild(child2);
+            Member4 member = new Member4();
+            member.setUsername ("hello");
+            member.setHomeAddress(new Address("city", "street", "10000"));
+            member.setWorkPeriod(new Period());
 
-            em.persist(parent);
-
-            em.flush();
-            em.clear();
-
-            Parent findParent = em.find(Parent.class, parent.getId());
-            findParent.getChildList().remove(0);
-
-
+            em.persist(member);
 
 
 
