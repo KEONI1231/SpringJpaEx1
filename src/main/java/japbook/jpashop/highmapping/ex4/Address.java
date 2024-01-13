@@ -1,6 +1,12 @@
 package japbook.jpashop.highmapping.ex4;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Embeddable
 public class Address {
@@ -29,7 +35,7 @@ public class Address {
         return street;
     }
 
-    public void setStreet(String street) {
+    private void setStreet(String street) {
         this.street = street;
     }
 
@@ -37,7 +43,25 @@ public class Address {
         return zipcode;
     }
 
-    public void setZipcode(String zipcode) {
+    private void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="MEMBER_ID")
+    private List<AddressEntity> addressHistory = new ArrayList<>();
+    @Override
+    public boolean equals(Object o) {
+        if(this == o) {return true;}
+        if( o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(city, address.city) &&
+                Objects.equals(street, address.street) &&
+                Objects.equals(zipcode, address.zipcode);
+
+    }
+    @Override
+    public int hashCode() { return Objects.hash(city, street, zipcode);}
+
+
 }
