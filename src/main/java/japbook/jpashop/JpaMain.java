@@ -1,14 +1,16 @@
 package japbook.jpashop;
 
+import LAST.domain.Member;
 import japbook.jpashop.highmapping.Movie;
 import japbook.jpashop.highmapping.cascade.Child;
 import japbook.jpashop.highmapping.cascade.Parent;
 import japbook.jpashop.highmapping.ex4.*;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -17,9 +19,30 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
+        String qlString = "select m From Member4 as m where m.username like '%kim'";
         try {
+            //Criteria 사용 준비
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Member4> query = cb.createQuery(Member4.class);
 
-            Member4 member = new Member4();
+            Root<Member4> m = query.from(Member4.class);
+            CriteriaQuery<Member4> cq = query.select(m).where(cb.equal(m.get("uesrname"), "kim"));
+            List<Member4> resultList = em.createQuery(cq)
+                    .getResultList();
+            String username = "dsafas";
+            if(username != null) {
+                cq = cq.where(cb.equal(m.get("username"), "kim"));
+            }
+            List<Member4> result =  em.createQuery(
+                    qlString,
+                    Member4.class
+            ).getResultList();
+
+            for (Member4 member4 : result) {
+                System.out.println("member4 = " + member4);
+            }
+
+           /* Member4 member = new Member4();
             member.setUsername ("hello");
             member.setHomeAddress(new Address("city", "street", "10000"));
             member.setWorkPeriod(new Period());
@@ -37,8 +60,8 @@ public class JpaMain {
 
             System.out.println("============== START ==============");
             Member4 findMember = em.find(Member4.class, member.getId());
-            //homeCity -> newCity
-            //findMember.getHomeAddress().setCity("newCity");
+            //homeCity -> newCity // 잘못된 예시
+            //findMember.getHomeAddress().setCity("newCity"); // 잘못된 예시
             Address a = findMember.getHomeAddress();
             findMember.setHomeAddress(new Address("new City", a.getStreet(), a.getZipcode()));
 
@@ -47,7 +70,7 @@ public class JpaMain {
             findMember.getFavoriteFood().add("한식");
 
            
-            System.out.println("============== END ==============");
+            System.out.println("============== END ==============");*/
             /*findMember.getAddressHistory().remove(new Address("old1", "street", "10001"));
             findMember.getAddressHistory().add(new Address("new City", "street", "10001"));
 */
